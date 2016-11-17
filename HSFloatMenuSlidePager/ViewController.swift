@@ -150,6 +150,10 @@ extension ViewController: UIScrollViewDelegate {
         let scrollView = object as? UIScrollView
         if scrollView == nil { return }
         if scrollView == self.rootScrollView {
+            if (scrollView?.contentOffset.y)! > headerViewHeight {
+                let offSetPoint = CGPoint(x: rootScrollView!.contentOffset.x, y: headerViewHeight)
+                setContentOffset(scrollView!, point: offSetPoint)
+            }
             return
         }
         if scrollView == self.contentSlidePageView {
