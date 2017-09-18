@@ -8,11 +8,27 @@
 
 import UIKit
 
+public class CustomGestureScrollView: UIScrollView {
+    
+    var panGestureShouldBeginClosure: ((_ panGesture: UIPanGestureRecognizer, _ collectionView: CustomGestureScrollView) -> Bool)?
+    func setupPanGestureShouldBeginClosure(closure: @escaping (_ panGesture: UIPanGestureRecognizer, _ collectionView: CustomGestureScrollView) -> Bool) {
+        panGestureShouldBeginClosure = closure
+    }
+    override public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let panGestureShouldBeginClosure = panGestureShouldBeginClosure, let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
+            return panGestureShouldBeginClosure(panGesture, self)
+        }
+        else {
+            return super.gestureRecognizerShouldBegin(gestureRecognizer)
+        }
+    }
+}
+
 @objc protocol SlidePageViewDelegate {
     func viewDidSlide(index: Int)
 }
 
-class SlidePageView: UIScrollView {
+class SlidePageView: CustomGestureScrollView {
 
     var contentView: UIView?
     var contentViews = [UIView]()

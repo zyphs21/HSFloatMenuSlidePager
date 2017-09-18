@@ -8,57 +8,46 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: PageViewController {
 
-    var tableView: UITableView?
-    let cellIdentifier = "UITableViewCell"
-    lazy var testArray: [String] = {
-        var array: [String] = []
-        for i in 1...18 {
-            array.append("\(i)-1")
-        }
-        return array
+    //
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.white
-        
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        tableView?.backgroundColor = UIColor.white
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        tableView?.estimatedRowHeight = 30
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        
-        self.view.addSubview(tableView!)
+        automaticallyAdjustsScrollViewInsets = false
+        view.addSubview(tableView)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
 }
 
 extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 18
+        // #warning Incomplete implementation, return the number of rows
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) 
-        cell.textLabel?.text = testArray[indexPath.item]
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cellId")
+        cell.textLabel?.text = "--------ceshishishihi\(indexPath.row)"
+        
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

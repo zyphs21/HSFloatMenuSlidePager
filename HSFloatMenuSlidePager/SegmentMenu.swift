@@ -12,7 +12,7 @@ import UIKit
     func menuButtonDidClick(index: Int)
 }
 
-class SegmentMenu: UIView {
+public class SegmentMenu: UIView {
 
     weak var delegate: SegmentMenuDelegate?
     
@@ -59,14 +59,14 @@ class SegmentMenu: UIView {
         self.addSubview(bottomLine)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     // MARK: - Function
     
-    fileprivate func addMenuButton(menuNameArray: [String]) {
+    func addMenuButton(menuNameArray: [String]) {
         self.menuButtonArray.forEach() {$0.removeFromSuperview()}
         self.menuButtonArray.removeAll()
         

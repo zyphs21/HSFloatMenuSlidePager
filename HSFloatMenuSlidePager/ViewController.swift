@@ -66,9 +66,9 @@ class ViewController: UIViewController {
         firstVC.title = "动态"
         firstVC.view.frame = CGRect(x: 0, y: segmentMenu!.frame.maxY, width: UIScreen.main.bounds.width, height: rootScrollView!.bounds.height - segmentMenu!.bounds.height)
         controllerArray.append(firstVC)
-        viewObservers.append(firstVC.tableView!)
+        viewObservers.append(firstVC.tableView)
         self.addChildViewController(firstVC)
-        firstVC.tableView?.addObserver(self, forKeyPath: "contentOffset",
+        firstVC.tableView.addObserver(self, forKeyPath: "contentOffset",
                                        options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
                                        context: nil)
         
@@ -160,7 +160,7 @@ extension ViewController: UIScrollViewDelegate {
             
         }
         
-        let changeValues = change as! [NSKeyValueChangeKey: AnyObject]
+        let changeValues = change! as [NSKeyValueChangeKey: AnyObject]
         
         if let new = changeValues[NSKeyValueChangeKey.newKey]?.cgPointValue,
             let old = changeValues[NSKeyValueChangeKey.oldKey]?.cgPointValue {

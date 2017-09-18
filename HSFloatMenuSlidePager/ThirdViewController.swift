@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController {
+class ThirdViewController: PageViewController {
 
     var tableView: UITableView?
     let cellIdentifier = "UITableViewCell"
@@ -24,9 +24,10 @@ class ThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.white
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView?.backgroundColor = UIColor.white
         tableView?.delegate = self
         tableView?.dataSource = self

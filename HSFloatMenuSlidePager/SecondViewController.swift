@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: PageViewController {
 
     var tableView: UITableView?
     let cellIdentifier = "UITableViewCell"
     lazy var testArray: [String] = {
         var array: [String] = []
-        for i in 1...19 {
+        for i in 1...5 {
             array.append("\(i)-2")
         }
         return array
@@ -24,14 +24,16 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.white
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView?.backgroundColor = UIColor.white
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.estimatedRowHeight = 30
         tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.tableFooterView = UIView()
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         self.view.addSubview(tableView!)
@@ -49,7 +51,7 @@ extension SecondViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 19
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
