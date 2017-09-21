@@ -87,7 +87,7 @@ public class SegmentMenu: UIView {
         bottomIndicator.frame = CGRect(x: 0, y: self.bounds.height - indicatorHeight, width: buttonWidth, height: indicatorHeight)
     }
     
-    func menuButtonDidClick(_ button: UIButton) {
+    @objc func menuButtonDidClick(_ button: UIButton) {
         setSelectButton(index: button.tag)
         //delegate?.menuButtonDidClick(index: button.tag)
     }

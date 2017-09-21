@@ -37,7 +37,7 @@ let headViewHeight: CGFloat  = 300.0
 // MARK: - TestViewController
 
 class TestViewController: UIViewController {
-
+    
     var childScrollView: UIScrollView?
     
     lazy var navibarView: UIView = {
@@ -121,7 +121,7 @@ class TestViewController: UIViewController {
         return childVcs
     }
     
-    func buttonTouch() {
+    @objc func buttonTouch() {
         print("button touch")
     }
 }
