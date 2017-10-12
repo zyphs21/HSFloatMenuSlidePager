@@ -17,6 +17,7 @@
 		C0199D361DBDFC7500AB5428 /* SegmentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0199D321DBDFC7500AB5428 /* SegmentMenu.swift */; };
 		C0199D371DBDFC7500AB5428 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0199D331DBDFC7500AB5428 /* ThirdViewController.swift */; };
 		C0199D391DBDFCA500AB5428 /* SlidePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0199D381DBDFCA500AB5428 /* SlidePageView.swift */; };
+		C05B9BBE1F8F38A600F8374D /* ForTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B9BBD1F8F38A600F8374D /* ForTestViewController.swift */; };
 		C0B386D91F6F708B00018098 /* HSScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B386D81F6F708B00018098 /* HSScrollView.swift */; };
 		C0B386DD1F6F743400018098 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B386DC1F6F743400018098 /* ContentView.swift */; };
 		C0C179441E890C1000174B09 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C179431E890C1000174B09 /* TestViewController.swift */; };
@@ -35,6 +36,7 @@
 		C0199D321DBDFC7500AB5428 /* SegmentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentMenu.swift; sourceTree = "<group>"; };
 		C0199D331DBDFC7500AB5428 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		C0199D381DBDFCA500AB5428 /* SlidePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidePageView.swift; sourceTree = "<group>"; };
+		C05B9BBD1F8F38A600F8374D /* ForTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForTestViewController.swift; sourceTree = "<group>"; };
 		C0B386D81F6F708B00018098 /* HSScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSScrollView.swift; sourceTree = "<group>"; };
 		C0B386DC1F6F743400018098 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0C179431E890C1000174B09 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				C0199D1E1DBDFC2D00AB5428 /* AppDelegate.swift */,
 				C0199D201DBDFC2D00AB5428 /* ViewController.swift */,
 				C0C179431E890C1000174B09 /* TestViewController.swift */,
+				C05B9BBD1F8F38A600F8374D /* ForTestViewController.swift */,
 				C0B386DC1F6F743400018098 /* ContentView.swift */,
 				C0B386D81F6F708B00018098 /* HSScrollView.swift */,
 				C0199D301DBDFC7500AB5428 /* FirstViewController.swift */,
@@ -166,6 +169,7 @@
 				C0199D391DBDFCA500AB5428 /* SlidePageView.swift in Sources */,
 				C0C179441E890C1000174B09 /* TestViewController.swift in Sources */,
 				C0199D341DBDFC7500AB5428 /* FirstViewController.swift in Sources */,
+				C05B9BBE1F8F38A600F8374D /* ForTestViewController.swift in Sources */,
 				C0199D211DBDFC2D00AB5428 /* ViewController.swift in Sources */,
 				C0199D1F1DBDFC2D00AB5428 /* AppDelegate.swift in Sources */,
 				C0B386D91F6F708B00018098 /* HSScrollView.swift in Sources */,

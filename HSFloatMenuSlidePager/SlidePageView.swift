@@ -28,7 +28,7 @@ public class CustomGestureScrollView: UIScrollView {
     func viewDidSlide(index: Int)
 }
 
-class SlidePageView: CustomGestureScrollView {
+class SlidePageView: UIScrollView/*CustomGestureScrollView*/ {
 
     var contentView: UIView?
     var contentViews = [UIView]()

@@ -106,6 +106,23 @@ class ViewController: UIViewController {
 
 extension ViewController: UIScrollViewDelegate {
     
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == rootScrollView {
+            if scrollView.contentOffset.y >= headerViewHeight {
+                rootScrollView?.isScrollEnabled = false
+                self.contentSlidePageView?.isScrollEnabled = true
+            }
+        }else {
+            // 当 subScrollView 滑动到顶时，停止响应，mainScrollView 开始响应。
+            if scrollView.contentOffset.y <= 0 {
+                self.contentSlidePageView?.isScrollEnabled = false
+                rootScrollView?.isScrollEnabled = true
+            }
+        }
+    }
+    
+    
     func handleScrollUp(_ scrollView: UIScrollView,
                         change: CGFloat,
                         oldPosition: CGPoint) {
@@ -145,42 +162,42 @@ extension ViewController: UIScrollViewDelegate {
                                of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
-        if !observing { return }
-        
-        let scrollView = object as? UIScrollView
-        if scrollView == nil { return }
-        if scrollView == self.rootScrollView {
-            if (scrollView?.contentOffset.y)! > headerViewHeight {
-                let offSetPoint = CGPoint(x: rootScrollView!.contentOffset.x, y: headerViewHeight)
-                setContentOffset(scrollView!, point: offSetPoint)
-            }
-            return
-        }
-        if scrollView == self.contentSlidePageView {
-            
-        }
-        
-        let changeValues = change! as [NSKeyValueChangeKey: AnyObject]
-        
-        if let new = changeValues[NSKeyValueChangeKey.newKey]?.cgPointValue,
-            let old = changeValues[NSKeyValueChangeKey.oldKey]?.cgPointValue {
-            
-            let diff = old.y - new.y
-            
-            if diff > 0.0 {
-                
-                handleScrollUp(scrollView!,
-                               change: diff,
-                               oldPosition: old)
-            } else {
-                
-                handleScrollDown(scrollView!,
-                                 change: diff,
-                                 oldPosition: old)
-            }
-        }
+//        if !observing { return }
+//
+//        let scrollView = object as? UIScrollView
+//        if scrollView == nil { return }
+//        if scrollView == self.rootScrollView {
+//            if (scrollView?.contentOffset.y)! > headerViewHeight {
+//                let offSetPoint = CGPoint(x: rootScrollView!.contentOffset.x, y: headerViewHeight)
+//                setContentOffset(scrollView!, point: offSetPoint)
+//            }
+//            return
+//        }
+//        if scrollView == self.contentSlidePageView {
+//
+//        }
+//
+//        let changeValues = change! as [NSKeyValueChangeKey: AnyObject]
+//
+//        if let new = changeValues[NSKeyValueChangeKey.newKey]?.cgPointValue,
+//            let old = changeValues[NSKeyValueChangeKey.oldKey]?.cgPointValue {
+//
+//            let diff = old.y - new.y
+//
+//            if diff > 0.0 {
+//
+//                handleScrollUp(scrollView!,
+//                               change: diff,
+//                               oldPosition: old)
+//            } else {
+//
+//                handleScrollDown(scrollView!,
+//                                 change: diff,
+//                                 oldPosition: old)
+//            }
+//        }
     }
-    
+
     func setContentOffset(_ scrollView: UIScrollView, point: CGPoint) {
         observing = false
         scrollView.contentOffset = point
