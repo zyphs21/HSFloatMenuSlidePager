@@ -8,9 +8,10 @@
 
 import UIKit
 
-class FirstViewController: PageViewController {
+class FirstViewController: UIViewController, BasicPageScrollSubViewProtocol {
+    
+    weak var basicPageScrollViewDelegate: BasicPageScrollViewDelegate?
 
-    //
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.delegate = self
@@ -24,7 +25,6 @@ class FirstViewController: PageViewController {
         view.addSubview(tableView)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -33,6 +33,10 @@ class FirstViewController: PageViewController {
 }
 
 extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        basicPageScrollViewDelegate?.scrollViewIsScrolling(scrollView)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

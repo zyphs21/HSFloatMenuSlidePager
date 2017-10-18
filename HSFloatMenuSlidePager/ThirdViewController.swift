@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ThirdViewController: PageViewController {
+class ThirdViewController: UIViewController, BasicPageScrollSubViewProtocol {
+    
+    weak var basicPageScrollViewDelegate: BasicPageScrollViewDelegate?
 
-    var tableView: UITableView?
+    var tableView = UITableView()
     let cellIdentifier = "UITableViewCell"
     lazy var testArray: [String] = {
         var array: [String] = []
@@ -28,14 +30,14 @@ class ThirdViewController: PageViewController {
         self.view.backgroundColor = UIColor.white
         
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView?.backgroundColor = UIColor.white
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        tableView?.estimatedRowHeight = 30
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.backgroundColor = UIColor.white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 30
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
-        self.view.addSubview(tableView!)
+        self.view.addSubview(tableView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +47,11 @@ class ThirdViewController: PageViewController {
 }
 
 extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        basicPageScrollViewDelegate?.scrollViewIsScrolling(scrollView)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

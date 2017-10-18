@@ -76,9 +76,9 @@ class ViewController: UIViewController {
         secondVC.title = "新闻"
         secondVC.view.frame = CGRect(x: 0, y: segmentMenu!.frame.maxY, width: UIScreen.main.bounds.width, height: rootScrollView!.bounds.height - segmentMenu!.bounds.height)
         controllerArray.append(secondVC)
-        viewObservers.append(secondVC.tableView!)
+        viewObservers.append(secondVC.tableView)
         self.addChildViewController(secondVC)
-        secondVC.tableView?.addObserver(self, forKeyPath: "contentOffset",
+        secondVC.tableView.addObserver(self, forKeyPath: "contentOffset",
                                       options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
                                       context: nil)
         
@@ -86,9 +86,9 @@ class ViewController: UIViewController {
         thirdVC.title = "公告"
         thirdVC.view.frame = CGRect(x: 0, y: segmentMenu!.frame.maxY, width: UIScreen.main.bounds.width, height: rootScrollView!.bounds.height - segmentMenu!.bounds.height)
         controllerArray.append(thirdVC)
-        viewObservers.append(thirdVC.tableView!)
+        viewObservers.append(thirdVC.tableView)
         self.addChildViewController(thirdVC)
-        thirdVC.tableView?.addObserver(self, forKeyPath: "contentOffset",
+        thirdVC.tableView.addObserver(self, forKeyPath: "contentOffset",
                                               options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
                                               context: nil)
         

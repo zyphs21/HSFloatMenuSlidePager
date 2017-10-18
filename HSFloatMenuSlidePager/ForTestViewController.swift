@@ -15,16 +15,21 @@ class ForTestViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
-    lazy var vcArray: [UIViewController] = {
-        var array: [UIViewController] = []
+    var childScrollView: UIScrollView?
+    
+    lazy var vcArray: [BasicPageScrollSubViewProtocol] = {
+        var array: [BasicPageScrollSubViewProtocol] = []
         let firstVC = FirstViewController()
         firstVC.title = "动态"
+        firstVC.basicPageScrollViewDelegate = self
         array.append(firstVC)
         let secondVC = SecondViewController()
         secondVC.title = "新闻"
+        secondVC.basicPageScrollViewDelegate = self
         array.append(secondVC)
         let thirdVC = ThirdViewController()
         thirdVC.title = "公告"
+        thirdVC.basicPageScrollViewDelegate = self
         array.append(thirdVC)
         
         return array
@@ -51,7 +56,7 @@ class ForTestViewController: UIViewController {
     }()
     
     lazy var contentScrollView: SlidePageView = {
-        let contentScrollView = SlidePageView(frame: CGRect(x: 0, y: headerViewHeight + segmentMenuHeight, width: screenWidth, height: screenHeight - segmentMenuHeight), controlls: vcArray)
+        let contentScrollView = SlidePageView(frame: CGRect(x: 0, y: headerViewHeight + segmentMenuHeight, width: screenWidth, height: screenHeight - segmentMenuHeight), controlls: vcArray as! [UIViewController])
         contentScrollView.slidePageDelegate = self
         contentScrollView.delegate = self
         return contentScrollView
@@ -78,7 +83,6 @@ class ForTestViewController: UIViewController {
 
 }
 
-// MARK: - SlidePageViewDelegate
 
 extension ForTestViewController: SlidePageViewDelegate {
     func viewDidSlide(index: Int) {
@@ -92,6 +96,33 @@ extension ForTestViewController: SegmentMenuDelegate {
     }
 }
 
-extension ForTestViewController: UIScrollViewDelegate {
+extension ForTestViewController: BasicPageScrollViewDelegate {
     
+    func scrollViewIsScrolling(_ scrollView: UIScrollView) {
+        childScrollView = scrollView
+        if mainScrollView.contentOffset.y < headerViewHeight {
+            scrollView.contentOffset = CGPoint.zero
+            scrollView.showsVerticalScrollIndicator = false
+            for view in vcArray {
+                view.tableView.contentOffset = CGPoint.zero
+            }
+        } else {
+            mainScrollView.contentOffset.y = headerViewHeight
+            scrollView.showsVerticalScrollIndicator = true
+        }
+    }
+}
+
+extension ForTestViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if mainScrollView.contentOffset.y > headerViewHeight {
+            mainScrollView.contentOffset.y = headerViewHeight
+        }
+        
+        if let childScrollViewOffsetY = childScrollView?.contentOffset.y, childScrollViewOffsetY > 0 {
+            mainScrollView.contentOffset.y = headerViewHeight
+        }
+    }
 }

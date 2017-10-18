@@ -8,9 +8,12 @@
 
 import UIKit
 
-class SecondViewController: PageViewController {
-
-    var tableView: UITableView?
+class SecondViewController: UIViewController, BasicPageScrollSubViewProtocol  {
+    
+    var tableView = UITableView()
+    
+    var basicPageScrollViewDelegate: BasicPageScrollViewDelegate?
+    
     let cellIdentifier = "UITableViewCell"
     lazy var testArray: [String] = {
         var array: [String] = []
@@ -28,15 +31,15 @@ class SecondViewController: PageViewController {
         self.view.backgroundColor = UIColor.white
         
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView?.backgroundColor = UIColor.white
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        tableView?.estimatedRowHeight = 30
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.tableFooterView = UIView()
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.backgroundColor = UIColor.white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 30
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
-        self.view.addSubview(tableView!)
+        self.view.addSubview(tableView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,6 +49,11 @@ class SecondViewController: PageViewController {
 }
 
 extension SecondViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        basicPageScrollViewDelegate?.scrollViewIsScrolling(scrollView)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
